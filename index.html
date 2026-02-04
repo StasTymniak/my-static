@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <title>💖 Валентинка</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ffc3a0 0%, #ffafbd 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 50px;
+      border-radius: 30px;
+      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+    
+    h1 {
+      color: #d63447;
+      font-size: 2em;
+      margin-bottom: 40px;
+    }
+    
+    .buttons {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      margin-bottom: 30px;
+      position: relative;
+      min-height: 60px;
+    }
+    
+    button {
+      padding: 15px 40px;
+      font-size: 20px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+    
+    #yesBtn {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+    }
+    
+    #yesBtn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 20px rgba(245, 87, 108, 0.4);
+    }
+    
+    #noBtn {
+      background: #95a5a6;
+      color: white;
+      position: absolute;
+      transition: all 0.1s ease;
+    }
+    
+    #result {
+      font-size: 24px;
+      color: #d63447;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    
+    #heartContainer {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .heart-image {
+      width: 300px;
+      height: 280px;
+      background-image: url('photo.jpg');
+      background-size: cover;
+      background-position: center;
+      clip-path: path('M150,25 C150,25 100,-10 60,10 C30,25 20,50 20,80 C20,120 60,160 150,240 C240,160 280,120 280,80 C280,50 270,25 240,10 C200,-10 150,25 150,25 Z');
+      animation: heartPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.25));
+    }
+    
+    @keyframes heartPop {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Будеш моєю валентинкою? 💘</h1>
+
+    <div class="buttons">
+      <button id="yesBtn">Так 💕</button>
+      <button id="noBtn">Ні 💔</button>
+    </div>
+
+    <p id="result"></p>
+    <div id="heartContainer"></div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const result = document.getElementById("result");
+    const heartContainer = document.getElementById("heartContainer");
+
+    noBtn.addEventListener("mouseenter", () => {
+      const maxX = 200;
+      const maxY = 150;
+      const x = Math.random() * maxX * 2 - maxX;
+      const y = Math.random() * maxY * 2 - maxY;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      if (heartContainer.innerHTML) return;
+
+      result.textContent = "Урааа! 💖";
+
+      heartContainer.innerHTML = `
+        <div class="heart-image"></div>
+      `;
+    });
+  </script>
+</body>
+</html>
